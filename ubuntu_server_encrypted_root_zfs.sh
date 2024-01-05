@@ -1392,6 +1392,15 @@ distroinstall(){
 			sway)
 				##Ubuntu sway desktop install has a full GUI environment.
 				##Don't select a display manager
+
+    				##Add ubuntu sway PPA
+    				mkdir -p /etc/apt/sources.list.d
+				cat >> "/etc/apt/sources.list.d/ubuntusway.list" <<-EOF
+    					deb https://ppa.launchpadcontent.net/ubuntusway-dev/stable/ubuntu $ubuntuver main 
+					#deb-src https://ppa.launchpadcontent.net/ubuntusway-dev/stable/ubuntu $ubuntuver main 
+				EOF
+    				apt update
+    				
 				apt install --yes ubuntusway-desktop
 			;;
 			#cinnamon)
