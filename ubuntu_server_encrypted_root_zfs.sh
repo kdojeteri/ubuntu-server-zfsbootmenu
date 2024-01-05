@@ -34,7 +34,7 @@ set -euo pipefail
 
 ##Variables:
 ubuntuver="jammy" #Ubuntu release to install. "jammy" (22.04).
-distro_variant="server" #Ubuntu variant to install. "server" (Ubuntu server; cli only.) "desktop" (Default Ubuntu desktop install). "kubuntu" (KDE plasma desktop variant). "xubuntu" (Xfce desktop variant). "budgie" (Budgie desktop variant). "MATE" (MATE desktop variant).
+distro_variant="sway" #Ubuntu variant to install. "server" (Ubuntu server; cli only.) "desktop" (Default Ubuntu desktop install). "kubuntu" (KDE plasma desktop variant). "xubuntu" (Xfce desktop variant). "budgie" (Budgie desktop variant). "MATE" (MATE desktop variant).
 user="testuser" #Username for new install.
 PASSWORD="testuser" #Password for user in new install.
 hostname="ubuntu" #Name to identify the main system on the network. An underscore is DNS non-compliant.
@@ -1388,6 +1388,11 @@ distroinstall(){
 				##Select lightdm as display manager.
 				echo lightdm shared/default-x-display-manager select lightdm | debconf-set-selections
 				apt install --yes ubuntu-mate-desktop
+			;;
+			sway)
+				##Ubuntu sway desktop install has a full GUI environment.
+				##Don't select a display manager
+				apt install --yes ubuntusway-desktop
 			;;
 			#cinnamon)
 			##ubuntucinnamon-desktop package unavailable in 22.04.
